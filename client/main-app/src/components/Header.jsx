@@ -1,17 +1,13 @@
 import Link from "next/link";
-import { useRouter } from "next/router"; // 1. Router import kiya
+import { useRouter } from "next/router";
 import { useAuth } from "../context/AuthContext";
 
 export default function Header() {
   const { user, logout } = useAuth();
-  const router = useRouter(); // 2. Router initialize kiya
+  const router = useRouter();
 
-  // 3. Check karo ki abhi hum kis page par hain
-  // Agar URL mein "/login" hai, to isLoginPage true hoga
-  const isLoginPage = router.pathname.startsWith("/login");
-  
-  // Agar URL mein "/register" hai, to isRegisterPage true hoga
-  const isRegisterPage = router.pathname.startsWith("/register");
+  // Check if we're on auth pages
+  const isAuthPage = router.pathname.startsWith("/auth");
 
   return (
     <header className="flex justify-between items-center p-4 bg-black text-white">
@@ -26,7 +22,7 @@ export default function Header() {
       </nav>
 
       {user ? (
-        /* Agar User Logged In hai */
+        /* Logged In User */
         <div className="flex items-center space-x-4">
           <span className="text-sm">Welcome, {user.name}</span>
           <button 
@@ -37,19 +33,19 @@ export default function Header() {
           </button>
         </div>
       ) : (
-        /* Agar User Logged Out hai */
+        /* Logged Out User */
         <div className="flex items-center space-x-4">
           
-          {/* LOGIN BUTTON: Sirf tab dikhega jab hum Login page par NAHI hain */}
-          {!isLoginPage && (
-            <Link href="/login/student">
+          {/* LOGIN BUTTON:  Hide on auth pages */}
+          {! isAuthPage && (
+            <Link href="/auth/student?tab=login">
               <span className="cursor-pointer hover:text-gray-300">Login</span>
             </Link>
           )}
 
-          {/* SIGN UP BUTTON: Sirf tab dikhega jab hum Register page par NAHI hain */}
-          {!isRegisterPage && (
-            <Link href="/register/student">
+          {/* SIGN UP BUTTON: Hide on auth pages */}
+          {!isAuthPage && (
+            <Link href="/auth/student?tab=register">
               <span className="bg-white text-black px-4 py-2 rounded font-medium hover:bg-gray-200 transition cursor-pointer">
                 Sign Up
               </span>
