@@ -24,4 +24,12 @@ export const getMe = () => API.get("/auth/me");
 export const getStudentData = () => API.get("/student-data");
 export const getTeacherData = () => API.get("/teacher-data");
 export const getAdminData = () => API.get("/admin-data");
-export const uploadAvatar = (formData) => API.post("/auth/upload-avatar", formData);
+export const uploadAvatar = (formData) =>
+  API.post("/auth/upload-avatar", formData);
+
+// Dashboard APIs
+export const getDashboardStats = () => API.get("/dashboard/stats");
+export const getEnrolledCourses = () => API.get("/dashboard/courses");
+
+// Payment APIs
+export const getPaymentHistory = () => API.get("/payments/history");
