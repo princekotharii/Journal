@@ -11,6 +11,7 @@ const nextConfig = {
 
   async rewrites() {
     return [
+      // Student rewrites
       {
         source: "/user/profile",
         destination: "/student/profile",
@@ -42,6 +43,23 @@ const nextConfig = {
       {
         source: "/user/close-account",
         destination: "/student/close-account",
+      },
+      // Tutor rewrites (placeholder - actual tutor pages will be created)
+      {
+        source: "/tutor/dashboard",
+        destination: "/tutor/dashboard",
+      },
+      {
+        source: "/tutor/courses",
+        destination: "/tutor/courses",
+      },
+      {
+        source: "/tutor/earnings",
+        destination: "/tutor/earnings",
+      },
+      {
+        source: "/tutor/settings",
+        destination: "/tutor/settings",
       },
     ];
   },
